@@ -86,14 +86,13 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    docker
+    docker-compose
     neovim
     curl
     git
     htop
     fastfetch
     pm2
-    yazi
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
