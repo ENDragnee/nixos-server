@@ -1,2 +1,2 @@
 .env*
-hardware-configuration.nix
+**/hardware-configuration.nix
