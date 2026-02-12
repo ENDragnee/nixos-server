@@ -92,6 +92,7 @@
     htop
     fastfetch
     pm2
+    docker
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
