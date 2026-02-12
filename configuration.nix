@@ -24,14 +24,14 @@
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
-  networking.interfaces.enp1s0.ipv4.addresses = [
-    {
-      address = "192.168.122.10";
-      prefixLength = 24;
-    }
-  ];
-  networking.defaultGateway = "192.168.122.1";
-  networking.nameservers = ["1.1.1.1" "8.8.8.8"];
+  # networking.interfaces.enp1s0.ipv4.addresses = [
+  #   {
+  #     address = "192.168.122.10";
+  #     prefixLength = 24;
+  #   }
+  # ];
+  # networking.defaultGateway = "192.168.122.1";
+  # networking.nameservers = ["1.1.1.1" "8.8.8.8"];
 
   # Set your time zone.
   time.timeZone = "Africa/Addis_Ababa";
@@ -86,7 +86,7 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    docker-compose
+    docker
     neovim
     curl
     git
