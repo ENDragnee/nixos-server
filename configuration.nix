@@ -72,7 +72,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ascii = {
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = ["wheel" "docker"];
     packages = with pkgs; [
       tree
     ];
@@ -92,7 +92,6 @@
     htop
     fastfetch
     pm2
-    docker
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
