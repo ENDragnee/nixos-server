@@ -80,6 +80,7 @@
 
   # programs.firefox.enable = true;
 
+  virtualisation.docker.enable = true;
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
@@ -92,6 +93,7 @@
     htop
     fastfetch
     pm2
+    yazi
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -106,7 +108,6 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [22 3000 80];
