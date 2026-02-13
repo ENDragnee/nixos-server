@@ -98,6 +98,22 @@
     '';
   };
 
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers."aastu-app" = {
+      image = "mastwal/aastu-slip-app:1.1.1";
+      ports = ["3000:3000"];
+      # Option A: List variables directly (Not recommended for secrets)
+      environment = {
+        HOSTNAME = "0.0.0.0";
+      };
+      # Option B: Load the env file from a path on your VM (Recommended)
+      environmentFiles = [
+        /home/ascii/aastu-app/.env
+      ];
+    };
+  };
+
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
