@@ -77,7 +77,7 @@
     ensureDatabases = ["aastu_slip"];
     ensureUsers = [
       {
-        name = "aastu_sms_admin";
+        name = "aastu_slip";
         ensureDBOwnership = true;
       }
     ];
