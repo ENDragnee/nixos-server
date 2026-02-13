@@ -68,6 +68,35 @@
 
   # programs.firefox.enable = true;
   virtualisation.docker.enable = true;
+  # 1. Enable the PostgreSQL service
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_17; # Use version 17
+
+    # Create the database and user automatically on startup
+    ensureDatabases = ["aastu_slip"];
+    ensureUsers = [
+      {
+        name = "aastu_sms_admin";
+        ensureDBOwnership = true;
+      }
+    ];
+
+    # Allow the database to listen on the network (so Docker can find it)
+    settings = {
+      listen_addresses = lib.mkForce "*";
+    };
+
+    # Authentication rules: Allow the local machine AND the Docker network
+    # Trust is okay for local dev, but you can change 'trust' to 'md5' for passwords
+    authentication = pkgs.lib.mkOverride 10 ''
+      # TYPE  DATABASE        USER            ADDRESS                 METHOD
+      local   all             all                                     trust
+      host    all             all             127.0.0.1/32            trust
+      host    all             all             172.17.0.0/16           trust
+      host    all             all             192.168.122.0/24        trust
+    '';
+  };
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
@@ -97,7 +126,7 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [22];
+  networking.firewall.allowedTCPPorts = [22 80 3000 5432];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
